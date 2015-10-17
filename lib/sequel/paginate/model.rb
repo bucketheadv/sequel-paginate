@@ -12,8 +12,9 @@ module Sequel
         end
 
         base.class_eval do
+          p base
           dataset_module do
-            p self
+            p base
             def page(page_no = 1)
               where.extension(:pagination).paginate(page_no, base.paginate_per)
             end
