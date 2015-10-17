@@ -15,6 +15,7 @@ module Sequel
         page_count = (1..(class_name.count.to_f / class_name.paginate_per).ceil).to_a
         if page_count.count > left + right + middle
           page_to_show = page_count[0..left-1]
+          page_to_show << -1
           page_to_show << page_count[-right..-1]
           page_to_show.flatten!
         end
@@ -26,7 +27,11 @@ module Sequel
           html += "<li><a href='#{path}?page=#{page_no-1}'>Prev</a></li>"
         end
         page_to_show.each do |page|
-          html += "<li><a href='#{path}?page=#{page}'>#{page}</a></li>"
+          if page == -1
+            html += "<li><a>...</a></li>"
+          else
+            html += "<li><a href='#{path}?page=#{page}'>#{page}</a></li>"
+          end
         end
         if page_no >= page_count.count
           html += "<li><a>Next</a></li>"
