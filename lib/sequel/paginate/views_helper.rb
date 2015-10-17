@@ -16,15 +16,8 @@ module Sequel
         else
           html += "<a href='#{path}?page=#{page_no-1}'>Prev</a>"
         end
-        if page_count.count > left + right
-          pages_show = page_count.select { |idx|
-            idx < left || idx < page_count[-right]
-          }
-        else
-          pages_show = page_count
-        end
-        pages_show.each do |page|
-          html += "<a href='#{path}?page=#{page}'>#{page}</a>"
+        page_count.each do |page|
+          html += "<a href='#{path}?page=#{page}'>Prev</a>"
         end
         if page_no >= page_count.count
           html += "<a>Next</a>"
