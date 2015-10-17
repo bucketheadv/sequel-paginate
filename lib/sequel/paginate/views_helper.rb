@@ -7,7 +7,7 @@ module Sequel
         left = args.first[:left] || 3
         right = args.first[:right] || 3
         path = "/models"
-        page_count = (1..(models.first.class.count / models.first.class.paginate_per)).to_a
+        page_count = (1..(models.first.class.count.to_f / models.first.class.paginate_per).ceil).to_a
         html = ""
         if page_no <= 1
           html += "<a>Prev</a>"
