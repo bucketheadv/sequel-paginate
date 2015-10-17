@@ -13,19 +13,19 @@ module Sequel
         path = request.path
         page_count = (1..(class_name.count.to_f / class_name.paginate_per).ceil).to_a
 
-        html = ""
+        html = "<ul class='#{"paginate"}'>"
         if page_no <= 1
-          html += "<a>Prev</a>"
+          html += "<li><a>Prev</a></li>"
         else
-          html += "<a href='#{path}?page=#{page_no-1}'>Prev</a>"
+          html += "<li><a href='#{path}?page=#{page_no-1}'>Prev</a></li>"
         end
         page_count.each do |page|
-          html += "<a href='#{path}?page=#{page}'>#{page}</a>"
+          html += "<li><a href='#{path}?page=#{page}'>#{page}</a></li>"
         end
         if page_no >= page_count.count
-          html += "<a>Next</a>"
+          html += "<li><a>Next</a></li>"
         else
-          html += "<a href='#{path}?page=#{page_no+1}'>Next</a>"
+          html += "<li><a href='#{path}?page=#{page_no+1}'>Next</a></li>"
         end
         html.html_safe
       end
