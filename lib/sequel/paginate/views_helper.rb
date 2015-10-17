@@ -2,7 +2,7 @@ module Sequel
   module Paginate
     module ViewsHelper 
       def paginate(models, *args, &block)
-        request = Struct.new(:path)
+        request = {}
         request.path = "/models"
         page_no = params[:page] || 1
         left = args.left || 3
