@@ -6,9 +6,9 @@ module Sequel
       end
       def paginate(models, *args, &block)
         page_no = (params[:page] || 1).to_i
-        left   = args[:left]    || 3
-        right  = args[:right]   || 3
-        middle = args[:middle]  || 3
+        left   = args[0][:left]    || 3
+        right  = args[0][:right]   || 3
+        middle = args[0][:middle]  || 3
         class_name = models.first.class
         path = request.path
         page_count = (1..(class_name.count.to_f / class_name.paginate_per).ceil).to_a
