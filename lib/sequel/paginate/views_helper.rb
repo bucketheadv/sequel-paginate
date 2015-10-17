@@ -10,7 +10,7 @@ module Sequel
         # left = args.first[:left] || 3
         # right = args.first[:right] || 3
         class_name = models.first.class
-        path = "/models"
+        path = request.path
         page_count = (1..(class_name.count.to_f / class_name.paginate_per).ceil).to_a
 
         html = ""
