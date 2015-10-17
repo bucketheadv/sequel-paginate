@@ -12,4 +12,4 @@ module Sequel
   end
 end
 
-Sequel::Sinatra::load
+Sequel::Sinatra.load
