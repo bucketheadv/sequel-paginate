@@ -8,9 +8,13 @@ module Sequel
         base.class_eval do
           dataset_module do
             def page(page_no = 1)
-              where.extension(:pagination).paginate(page_no, 10)
+              where.extension(:pagination).paginate(page_no, paginate_per)
             end
           end
+        end
+
+        def paginate_per(count = 20)
+          @paginate_per ||= count
         end
       end
     end
