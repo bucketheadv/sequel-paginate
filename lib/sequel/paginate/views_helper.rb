@@ -4,8 +4,8 @@ module Sequel
       def paginate(models, *args, &block)
         # page_no = params[:page] || 1
         page_no = 1
-        left = args.left || 3
-        right = args.right || 3
+        left = args.first.left || 3
+        right = args.first.right || 3
         path = "/models"
         page_count = 1..(models.first.class.count / models.first.class.paginate_per).to_a
         html = ""
