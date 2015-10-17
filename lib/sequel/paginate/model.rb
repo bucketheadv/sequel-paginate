@@ -1,7 +1,7 @@
 module Sequel
   module Paginate 
     module Model 
-      def self.extended(base)
+      def self.included(base)
         eigen_class = class << base; self; end
         eigen_class.instance_eval do
           p "HEHEDA"
