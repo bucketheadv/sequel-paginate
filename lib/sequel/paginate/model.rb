@@ -16,6 +16,7 @@ module Sequel
           dataset_module do
             p base
             def page(page_no = 1)
+              p base
               where.extension(:pagination).paginate(page_no, base.paginate_per)
             end
           end
