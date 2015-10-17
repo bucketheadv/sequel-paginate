@@ -14,7 +14,6 @@ module Sequel
         base.class_eval do
           dataset_module do
             define_method(:page) do |*args, &block|
-              p args
               begin
                 page_per = args[1][:page_per]
               rescue
