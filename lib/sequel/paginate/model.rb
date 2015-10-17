@@ -19,7 +19,8 @@ module Sequel
               rescue
                 page_per = nil
               end
-              page_no = args.first.to_i > 0 ? args.first.to_i : 1
+              page_no = args[0].to_i
+              page_no = page_no > 0 ? page_no : 1
               where.extension(:pagination).paginate(page_no, page_per || base.paginate_per)
             end
           end
