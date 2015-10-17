@@ -5,8 +5,8 @@ module Sequel
         base.extend(self)
       end
       def paginate(models, *args, &block)
-        # page_no = params[:page] || 1
-        page_no = 1
+        page_no = params[:page] || 1
+        #page_no = 1
         # left = args.first[:left] || 3
         # right = args.first[:right] || 3
         class_name = models.first.class
@@ -27,7 +27,7 @@ module Sequel
         else
           html += "<a href='#{path}?page=#{page_no+1}'>Next</a>"
         end
-        html
+        html.html_safe
       end
     end
   end
