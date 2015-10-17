@@ -1,6 +1,9 @@
 module Sequel 
   module Paginate
     module ViewsHelper 
+      def self.included(base)
+        base.extend(self)
+      end
       def paginate(models, *args, &block)
         # page_no = params[:page] || 1
         page_no = 1
