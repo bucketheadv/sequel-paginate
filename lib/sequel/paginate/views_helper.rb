@@ -5,7 +5,7 @@ module Sequel
         base.extend(self)
       end
       def paginate(models, *args, &block)
-        page_no = params[:page] || 1
+        page_no = (params[:page] || 1).to_i
         #page_no = 1
         # left = args.first[:left] || 3
         # right = args.first[:right] || 3
