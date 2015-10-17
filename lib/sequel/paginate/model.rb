@@ -13,8 +13,10 @@ module Sequel
           end
         end
 
-        def paginate_per(count = 20)
-          @paginate_per ||= count
+        class << base
+          def paginate_per(count = 20)
+            @paginate_per ||= count
+          end
         end
       end
     end
