@@ -16,6 +16,7 @@ module Sequel
         if page_count.count > left + right + middle
           page_to_show = page_count[0..left-1]
           page_to_show << page_count[-right..-1]
+          page_to_show.flatten
         end
 
         html = "<ul class='#{"paginate"}'>"
