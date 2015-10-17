@@ -5,6 +5,7 @@ module Sequel
         base.extend(self)
       end
       def paginate(models, *args, &block)
+        args = {} if args.nil?
         page_no = (params[:page] || 1).to_i
         left   = args[0][:left]    || 3
         right  = args[0][:right]   || 3
