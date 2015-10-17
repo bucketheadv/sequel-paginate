@@ -2,7 +2,8 @@ module Sequel
   module Paginate 
     module Model 
       def self.extended(base)
-        class << base
+        eigen_class = class << base; self; end
+        eigen_class.instance_eval do
           dataset_module do
             def page(page_no = 1)
               where.extension(:pagination).paginate(page_no, 10)
