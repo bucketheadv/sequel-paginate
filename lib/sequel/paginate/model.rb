@@ -14,6 +14,7 @@ module Sequel
         base.class_eval do
           dataset_module do
             define_method(:page) do |*args, &block|
+              p args
               begin
                 page_per = args[1][:page_per]
               rescue
@@ -21,7 +22,6 @@ module Sequel
               end
               page_no = args[0].to_i
               page_no = page_no > 0 ? page_no : 1
-              p page_no.class
               where.extension(:pagination).paginate(page_no.to_i, page_per || base.paginate_per)
             end
           end
