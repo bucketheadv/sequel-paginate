@@ -1,6 +1,6 @@
 module Sequel 
-  module Painate
-    module ViewHelper 
+  module Paginate
+    module ViewsHelper 
       def paginate(models, *args, &block)
         request = Struct.new(:path)
         request.path = "/models"
