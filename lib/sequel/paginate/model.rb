@@ -12,12 +12,10 @@ module Sequel
         end
 
         base.class_eval do
-          p base
           dataset_module do
-            p base
-            def page(page_no = 1)
-              p base
-              where.extension(:pagination).paginate(page_no, base.paginate_per)
+            define_method(:page) do |*args, &block|
+              page_no = args.first
+              where.extension(:pagination).paginate(page_no, paginate_per)
             end
           end
         end
