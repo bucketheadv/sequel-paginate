@@ -20,7 +20,7 @@ module Sequel
         pages_show.each do |page|
           html += "<a href='#{path}?page=#{page}'>#{page}</a>"
         end
-        if page_no >= page_count
+        if page_no >= page_count.count
           html += "<a>Next</a>"
         else
           html += "<a href='#{path}?page=#{page_no+1}'>Next</a>"
