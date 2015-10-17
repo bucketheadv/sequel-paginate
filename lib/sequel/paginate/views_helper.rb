@@ -4,12 +4,12 @@ module Sequel
       def paginate(models, *args, &block)
         # page_no = params[:page] || 1
         page_no = 1
-        left = args.first[:left] || 3
-        right = args.first[:right] || 3
+        # left = args.first[:left] || 3
+        # right = args.first[:right] || 3
+        class_name = models.first.class
         path = "/models"
-        page_count = (1..(models.first.class.count.to_f / models.first.class.paginate_per).ceil).to_a
+        page_count = (1..(class_name.count.to_f / class_name.paginate_per).ceil).to_a
 
-        p page_count
         html = ""
         if page_no <= 1
           html += "<a>Prev</a>"
