@@ -21,7 +21,7 @@ module Sequel
               if (p < page_no + middle && p > page_no - middle)
                 page_to_show << p
               else
-                page_to_show << -1
+                page_to_show << -1 unless page_to_show.last == -1
               end
             else
               page_to_show << p
@@ -30,18 +30,6 @@ module Sequel
         else
           page_to_show = page_count
         end
-        page_to_show = page_to_show.flatten
-        #if page_count.count > left + right + middle
-        #  page_to_show = page_count[0..left-1]
-        #  if page_no - middle > left && page_no + middle < right
-        #    page_to_show << ((page_no - middle)..page_no).to_a
-        #    page_to_show << -1
-        #  end
-        #  page_to_show << page_count[-right..-1]
-        #  page_to_show.flatten!
-        #else
-        #  page_to_show = page_count
-        #end
 
         html = "<ul class='#{html_class}'>"
         if page_no <= 1
