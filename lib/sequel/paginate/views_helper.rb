@@ -15,7 +15,7 @@ module Sequel
         path = request.path
         page_count = (1..(class_name.count.to_f / class_name.paginate_per).ceil).to_a
         page_to_show = []
-        if page_count.count < left + right + middle
+        if page_count.count > left + right + middle
           page_count.each do |p|
             if page_no - middle > left || page_no + middle < right
               page_to_show << -1
