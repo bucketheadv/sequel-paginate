@@ -10,6 +10,7 @@ module Sequel
         left   = args[0][:left]    || 3
         right  = args[0][:right]   || 3
         middle = args[0][:middle]  || 3
+        remote = args[0][:remote]  || false
         html_class = args[0][:class] || "paginate"
         class_name = models.first.class
         path = request.path
@@ -35,7 +36,7 @@ module Sequel
         if page_no <= 1
           html += "<li><a>Prev</a></li>"
         else
-          html += "<li><a href='#{path}?page=#{page_no-1}'>Prev</a></li>"
+          html += "<li><a href='#{path}?page=#{page_no-1}' #{remote_tag(remote)}>Prev</a></li>"
         end
         page_to_show.each do |page|
           if page == -1
@@ -44,17 +45,21 @@ module Sequel
             if page == page_no
               html += "<li><a>#{page}</a></li>"
             else
-              html += "<li><a href='#{path}?page=#{page}'>#{page}</a></li>"
+              html += "<li><a href='#{path}?page=#{page}' #{remote_tag(remote)}>#{page}</a></li>"
             end
           end
         end
         if page_no >= page_count.count
           html += "<li><a>Next</a></li>"
         else
-          html += "<li><a href='#{path}?page=#{page_no+1}'>Next</a></li>"
+          html += "<li><a href='#{path}?page=#{page_no+1}' #{remote_tag(remote)}>Next</a></li>"
         end
         html.html_safe
       end
+    end
+    private
+    def remote_tag(remote)
+      "data-remote='true'" if remote
     end
   end
 end

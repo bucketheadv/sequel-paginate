@@ -22,7 +22,14 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+If you use rails, add `include Sequel::Paginate::ViewsHelper` to your `application_controller.rb`, if you use padrino, add it to `app/app.rb`.
+
+Now you can use `paginate @models` in your views, also you can use these options below.
+
+### middle (default 3) 
+### left (default 3)
+### right (default 3)
+### class (default 'paginate')
 
 ## Development
 
