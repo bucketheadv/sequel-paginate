@@ -57,7 +57,6 @@ module Sequel
         html.html_safe
       end
     end
-    private
     def remote_tag(remote)
       "data-remote='true'" if remote
     end
