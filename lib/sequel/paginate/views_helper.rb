@@ -18,21 +18,19 @@ module Sequel
         if page_count.count > left + right + middle
           page_count.each do |p|
             if page_no > left && page_no < page_count[-right]
-              if page_no - middle > left && page_no + middle < right
+              if p > page_no + middle || p < page_no - middle
                 page_to_show << -1
               else
                 page_to_show << p
               end
             else
-              page_to_show += (1..left).to_a
-              page_to_show << -1
-              page_to_show += page_count[-right..-1].to_a
+              page_to_show << p
             end
           end
         else
           page_to_show = page_count
         end
-        page_to_show.uniq!.flatten.uniq!
+        page_to_show.flatten!.uniq!
         #if page_count.count > left + right + middle
         #  page_to_show = page_count[0..left-1]
         #  if page_no - middle > left && page_no + middle < right
