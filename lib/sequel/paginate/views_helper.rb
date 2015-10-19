@@ -10,17 +10,27 @@ module Sequel
         left   = args[0][:left]    || 3
         right  = args[0][:right]   || 3
         middle = args[0][:middle]  || 3
+        html_class = args[0][:class] || "paginate"
         class_name = models.first.class
         path = request.path
         page_count = (1..(class_name.count.to_f / class_name.paginate_per).ceil).to_a
         if page_count.count > left + right + middle
           page_to_show = page_count[0..left-1]
-          page_to_show << -1
+          page_to_show << ((page_no - middle)..page_no).to_a
+          if page_count - middle > left 
+            page_to_show << -1
+          end
           page_to_show << page_count[-right..-1]
+          page_to_show << (page_no..(page_no + middle)).to_a
+          if page_count + middle < right
+            page_to_show << -1
+          end
           page_to_show.flatten!
+        else
+          page_to_show = page_count
         end
 
-        html = "<ul class='#{"paginate"}'>"
+        html = "<ul class='#{html_class}'>"
         if page_no <= 1
           html += "<li><a>Prev</a></li>"
         else
@@ -30,7 +40,11 @@ module Sequel
           if page == -1
             html += "<li><a>...</a></li>"
           else
-            html += "<li><a href='#{path}?page=#{page}'>#{page}</a></li>"
+            if page == page_no
+              html += "<li><a>#{page}</a></li>"
+            else
+              html += "<li><a href='#{path}?page=#{page}'>#{page}</a></li>"
+            end
           end
         end
         if page_no >= page_count.count
