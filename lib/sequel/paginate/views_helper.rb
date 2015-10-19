@@ -17,12 +17,12 @@ module Sequel
         if page_count.count > left + right + middle
           page_to_show = page_count[0..left-1]
           page_to_show << ((page_no - middle)..page_no).to_a
-          if page_count - middle > left 
+          if page_no - middle > left 
             page_to_show << -1
           end
           page_to_show << page_count[-right..-1]
           page_to_show << (page_no..(page_no + middle)).to_a
-          if page_count + middle < right
+          if page_no + middle < right
             page_to_show << -1
           end
           page_to_show.flatten!
