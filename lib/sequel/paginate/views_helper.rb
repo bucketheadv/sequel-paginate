@@ -29,7 +29,7 @@ module Sequel
               page_to_show << page_count[-right..-1].to_a
             end
           end
-          page_to_show.uniq!
+          page_to_show.flatten.uniq!
         else
           page_to_show = page_count
         end
