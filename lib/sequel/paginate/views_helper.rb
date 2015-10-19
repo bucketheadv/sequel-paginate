@@ -29,10 +29,10 @@ module Sequel
               page_to_show << page_count[-right..-1].to_a
             end
           end
-          page_to_show.flatten.uniq!
         else
           page_to_show = page_count
         end
+        page_to_show.flatten.uniq!
         #if page_count.count > left + right + middle
         #  page_to_show = page_count[0..left-1]
         #  if page_no - middle > left && page_no + middle < right
