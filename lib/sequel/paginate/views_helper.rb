@@ -17,7 +17,7 @@ module Sequel
         page_to_show = []
         if page_count.count > left + right + middle
           page_count.each do |p|
-            if page_no > left && page_no < page_count[-right]
+            if p > left && p < page_count[-right]
               if (p < page_no + middle && p > page_no - middle)
                 page_to_show << p
               else
