@@ -17,13 +17,16 @@ module Sequel
         page_to_show = []
         if page_count.count > left + right + middle
           page_count.each do |p|
-            p "hehe = #{p}"
-            if page_no - middle > left || page_no + middle < right
-              p -1 
-              page_to_show << -1
+            if page_no > left && page_no < page_count[-right]
+              if page_no - middle > left && page_no + middle < right
+                page_to_show << -1
+              else
+                page_to_show << p
+              end
             else
-              p p
-              page_to_show << p
+              page_to_show << (1..left).to_a
+              page_to_show << -1
+              page_to_show << page_count[-right..-1].to_a
             end
           end
           page_to_show.uniq!
