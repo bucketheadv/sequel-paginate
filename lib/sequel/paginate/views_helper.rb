@@ -32,7 +32,7 @@ module Sequel
         else
           page_to_show = page_count
         end
-        page_to_show.flatten.uniq!
+        page_to_show.uniq!.flatten.uniq!
         #if page_count.count > left + right + middle
         #  page_to_show = page_count[0..left-1]
         #  if page_no - middle > left && page_no + middle < right
