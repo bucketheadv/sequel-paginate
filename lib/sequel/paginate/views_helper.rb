@@ -24,9 +24,9 @@ module Sequel
                 page_to_show << p
               end
             else
-              page_to_show << (1..left).to_a
+              page_to_show += (1..left).to_a
               page_to_show << -1
-              page_to_show << page_count[-right..-1].to_a
+              page_to_show += page_count[-right..-1].to_a
             end
           end
         else
