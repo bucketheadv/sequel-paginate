@@ -26,11 +26,11 @@ If you use rails, add `include Sequel::Paginate::ViewsHelper` to your `applicati
 
 Now you can use `paginate @models` in your views, also you can use these options below.
 
-### middle (default 3) 
-### left (default 3)
-### right (default 3)
-### class (default 'paginate') css class name.
-### remote (default false) Use it in ajax.
+* middle (default 3) 
+* left (default 3)
+* right (default 3)
+* class (default 'paginate') css class name.
+* remote (default false) Use it in ajax.If you want to use it, ensure include jquery.js and jquery-ujs.js in your layout file.
 
 Whatever rails or padrino you use, add `include Sequel::Paginate::Model` to your model files, then your can use `ModelName.page(page_no)` to query models the page you want.
 
