@@ -32,7 +32,7 @@ module Sequel
           page_to_show = page_count
         end
 
-        html = "<ul class='#{html_class}'>"
+        html = "<div class='#{html_class}'><ul>"
         if page_no <= 1
           html += "<li><a>Prev</a></li>"
         else
@@ -54,6 +54,7 @@ module Sequel
         else
           html += "<li class='next'><a href='#{path}?page=#{page_no+1}' #{remote_tag(remote)}>Next</a></li>"
         end
+        html += "</ul></div>"
         html.html_safe
       end
       private
