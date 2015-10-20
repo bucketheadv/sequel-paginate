@@ -8,7 +8,7 @@ module Sequel
         return unless base.ancestors.include?(Sequel::Model)
         class << base
           def paginate_per(count = 20)
-            @@paginate_per ||= count
+            @paginate_per ||= count
           end
         end
 
