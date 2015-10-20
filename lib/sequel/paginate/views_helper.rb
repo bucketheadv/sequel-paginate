@@ -11,7 +11,7 @@ module Sequel
         right  = args[0][:right]   || 3
         middle = args[0][:middle]  || 3
         remote = args[0][:remote]  || false
-        html_class = args[0][:class] || "paginate"
+        html_class = args[0][:class] || "pagination"
         class_name = models.first.class
         path = request.path
         page_count = (1..(class_name.count.to_f / class_name.paginate_per).ceil).to_a
@@ -36,14 +36,14 @@ module Sequel
         if page_no <= 1
           html += "<li><a>Prev</a></li>"
         else
-          html += "<li><a href='#{path}?page=#{page_no-1}' #{remote_tag(remote)}>Prev</a></li>"
+          html += "<li class='previous'><a href='#{path}?page=#{page_no-1}' #{remote_tag(remote)}>Prev</a></li>"
         end
         page_to_show.each do |page|
           if page == -1
             html += "<li><a>...</a></li>"
           else
             if page == page_no
-              html += "<li><a>#{page}</a></li>"
+              html += "<li class='active'><a>#{page}</a></li>"
             else
               html += "<li><a href='#{path}?page=#{page}' #{remote_tag(remote)}>#{page}</a></li>"
             end
@@ -52,7 +52,7 @@ module Sequel
         if page_no >= page_count.count
           html += "<li><a>Next</a></li>"
         else
-          html += "<li><a href='#{path}?page=#{page_no+1}' #{remote_tag(remote)}>Next</a></li>"
+          html += "<li class='next'><a href='#{path}?page=#{page_no+1}' #{remote_tag(remote)}>Next</a></li>"
         end
         html.html_safe
       end
