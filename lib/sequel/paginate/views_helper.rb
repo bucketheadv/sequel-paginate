@@ -15,6 +15,7 @@ module Sequel
         class_name = models.first.class
         path = request.path
         page_count = (1..(class_name.count.to_f / class_name.paginate_per).ceil).to_a
+        return nil if page_count.length <= 1
         page_to_show = []
         if page_count.count > left + right + middle
           page_count.each do |p|
