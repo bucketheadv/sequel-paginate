@@ -2,6 +2,7 @@ module Sequel
   class Model
     def self.inherited(base)
       base.class_eval do
+        p self
         base.send :include, ::Sequel::Paginate::Realization
         def paginate_per(count = 20)
           @paginate_per ||= count
