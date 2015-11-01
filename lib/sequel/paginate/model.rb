@@ -36,6 +36,8 @@ end
 
 class Sequel::Model
   def self.inherted(base)
-    base.send :include, ::Sequel::Paginate::Model
+    class << base
+      include, ::Sequel::Paginate::Model
+    end
   end
 end
