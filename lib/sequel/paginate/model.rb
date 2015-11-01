@@ -2,7 +2,7 @@ module Sequel
   module Paginate 
     module Model 
       def self.included(base)
-        base.extend(self)
+        # base.extend(self)
       end
 
       def self.extended(base)
