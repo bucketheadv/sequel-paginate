@@ -30,12 +30,12 @@ module Sequel
 end
 
 class Sequel::Model
-  include ::Sequel::Paginate::Model
-  def self.inherited(base)
-    class << base
-      def paginate_per(count = 20)
-        @paginate_per ||= count
-      end
-    end
-  end
+  #include ::Sequel::Paginate::Model
+  #def self.inherited(base)
+  #  class << base
+  #    def paginate_per(count = 20)
+  #      @paginate_per ||= count
+  #    end
+  #  end
+  #end
 end
