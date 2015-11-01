@@ -2,11 +2,7 @@ module Sequel
   class Model
     def self.inherited(base)
       base.class_eval do
-        p self
         base.send :include, ::Sequel::Paginate::Realization
-        def paginate_per(count = 20)
-          @paginate_per ||= count
-        end
       end
     end
   end
@@ -18,6 +14,11 @@ module Sequel
 
       def self.extended(base)
         # return unless base.ancestors.include?(Sequel::Model)
+        class << base
+          def paginate_per(count = 20)
+            @paginate_per ||= count
+          end
+        end
         base.class_eval do
           dataset_module do
             define_method(:page) do |*args, &block|
