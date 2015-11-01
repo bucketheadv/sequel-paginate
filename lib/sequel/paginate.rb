@@ -7,3 +7,12 @@ module Sequel
     # Your code goes here...
   end
 end
+
+if defined?(Rails)
+  require "sequel/paginate/railtie"
+end
+
+if defined?(::Padrino)
+  ::Padrino::Application.send :include, ::Sequel::Paginate::ViewsHelper
+end
+
