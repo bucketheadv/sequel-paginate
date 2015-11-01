@@ -6,6 +6,7 @@ module Sequel
       end
       def self.extended(base)
         # return unless base.ancestors.include?(Sequel::Model)
+        p "heheda"
         class << base
           def paginate_per(count = 20)
             @paginate_per ||= count
