@@ -9,7 +9,7 @@ TODO: Delete this and the text above, and describe your gem
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'sequel-paginate'
+gem 'sequel-paginate', github: 'sven199109/sequel-paginate'
 ```
 
 And then execute:
