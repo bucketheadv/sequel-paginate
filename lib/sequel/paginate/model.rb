@@ -34,4 +34,8 @@ module Sequel
   end
 end
 
-# Sequel::Model.send :include, ::Sequel::Paginate::Model
+class Sequel::Model
+  def self.inherited(base)
+    base.include ::Sequel::Paginate::Model
+  end
+end
