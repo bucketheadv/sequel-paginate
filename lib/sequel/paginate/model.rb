@@ -1,6 +1,6 @@
 module Sequel
   class Model
-    def self.inherted(base)
+    def self.inherited(base)
       p base
       class << base
         p self
