@@ -7,10 +7,8 @@ module Sequel
       def self.extended(base)
         # return unless base.ancestors.include?(Sequel::Model)
         class << base
-          def self.inherited(b)
-            def paginate_per(count = 20)
-              @paginate_per ||= count
-            end
+          def paginate_per(count = 20)
+            @paginate_per ||= count
           end
         end
 
@@ -37,5 +35,9 @@ module Sequel
 end
 
 class Sequel::Model
-  include ::Sequel::Paginate::Model
+  def self.inherited(base)
+    base.class_eval do 
+      include ::Sequel::Paginate::Model
+    end
+  end
 end
