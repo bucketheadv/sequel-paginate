@@ -13,6 +13,7 @@ if defined?(Rails)
 end
 
 if defined?(::Padrino)
+  require 'padrino-core'
   ::Padrino::Application.send :include, ::Sequel::Paginate::ViewsHelper
 end
 
