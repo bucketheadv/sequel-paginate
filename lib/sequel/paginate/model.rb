@@ -1,11 +1,4 @@
 module Sequel
-  class Model
-    def self.inherited(base)
-      base.class_eval do
-        base.send :include, ::Sequel::Paginate::Realization
-      end
-    end
-  end
   module Paginate 
     module Realization
       def self.included(base)
@@ -13,9 +6,7 @@ module Sequel
       end
 
       def self.extended(base)
-        # return unless base.ancestors.include?(Sequel::Model)
-        p base
-        class << base
+        class << base 
           def paginate_per(count = 20)
             @paginate_per ||= count
           end
@@ -30,7 +21,7 @@ module Sequel
               end
               page_no = args[0].to_i
               page_no = page_no > 0 ? page_no : 1
-              where.extension(:pagination).paginate(page_no.to_i, page_per || base.paginate_per)
+              where.extension(:pagination).paginate(page_no.to_i, page_per || self.model.paginate_per)
             end
           end
         end
@@ -39,3 +30,4 @@ module Sequel
   end
 end
 
+Sequel::Model.include ::Sequel::Paginate::Realization

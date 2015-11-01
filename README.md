@@ -32,7 +32,7 @@ Use `paginate @models` in your views, also you can use these options below.
 
  For example, `paginate @models, left: 5, right: 5, remote: true`.
 
-Whatever rails or padrino you use, add `include Sequel::Paginate::Model` to your model files, then your can use `ModelName.page(page_no)` to query models the page you want.
+Whatever rails or padrino you use, your can use `ModelName.page(page_no)` to query models the page you want.
 
 ## Development
 
