@@ -34,4 +34,4 @@ module Sequel
   end
 end
 
-Sequel::Model.send :include, ::Sequel::Paginate::Model
+# Sequel::Model.send :include, ::Sequel::Paginate::Model
