@@ -1,3 +1,4 @@
+require 'sequel/model'
 module Sequel
   module Paginate 
     module Realization
