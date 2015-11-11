@@ -1,5 +1,5 @@
 require "sequel/paginate/version"
-require "sequel/paginate/model"
+require "sequel/paginate/realization"
 require "sequel/paginate/views_helper"
 
 module Sequel
